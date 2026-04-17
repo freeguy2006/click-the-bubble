@@ -157,7 +157,6 @@ int main() {
 
                     bubble_list[i].set_position(pos1);
                     bubble_list[j].set_position(pos2);
-                    // 調速度
                     // obj 速度
                     Vector2 speed1 = bubble_list[i].get_speed();
                     Vector2 speed2 = bubble_list[j].get_speed();
