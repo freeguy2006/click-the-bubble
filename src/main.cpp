@@ -135,52 +135,6 @@ int main() {
                     score++;   
                 }
             }
-            for(int j = i+1;j<bubble_list.size();j++){
-                float x_diff = bubble_list[i].get_position().x-bubble_list[j].get_position().x;
-                float y_diff = bubble_list[i].get_position().y-bubble_list[j].get_position().y;
-                float distance = sqrt(x_diff*x_diff + y_diff*y_diff);
-                float the_two_size = bubble_list[i].get_size()+bubble_list[j].get_size();
-                if(distance < the_two_size){
-                    // 碰撞
-                    float over_distance = the_two_size - distance;
-                    
-                    float nx = x_diff/distance; // 法向量 
-                    float ny = y_diff/distance;
-                    // 修正位置
-                    Vector2 pos1 = bubble_list[i].get_position();
-                    Vector2 pos2 = bubble_list[j].get_position();
-                    
-                    pos1.x += nx * over_distance/2;
-                    pos1.y += ny * over_distance/2;
-                    pos2.x -= nx * over_distance/2;
-                    pos2.y -= ny * over_distance/2;
-
-                    bubble_list[i].set_position(pos1);
-                    bubble_list[j].set_position(pos2);
-                    // obj 速度
-                    Vector2 speed1 = bubble_list[i].get_speed();
-                    Vector2 speed2 = bubble_list[j].get_speed();
-                    float relative_speed_x = speed1.x - speed2.x;
-                    float relative_speed_y = speed1.y - speed2.y;
-                    float vel_along_normal = relative_speed_x * nx + relative_speed_y * ny;
-                    if(vel_along_normal < 0){
-                        float impulse = -1.5f * vel_along_normal; 
-                        speed1.x += nx * impulse * 0.5;
-                        speed1.y += ny * impulse * 0.5;
-                        speed2.x -= nx * impulse * 0.5;
-                        speed2.y -= ny * impulse * 0.5;
-                        bubble_list[i].set_speed(speed1);
-                        bubble_list[j].set_speed(speed2);
-
-                    }
-                    
-                    
-                    
-                }   
-            }
-
-
-
         }
         // 畫面構造
         BeginDrawing(); // Setup canvas (framebuffer) to start drawing
